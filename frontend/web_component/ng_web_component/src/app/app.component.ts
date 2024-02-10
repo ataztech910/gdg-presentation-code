@@ -1,6 +1,7 @@
-import { AsyncPipe, NgClass, NgFor } from '@angular/common';
+import { AsyncPipe, CommonModule, NgClass, NgFor } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { FieldValue, Firestore, addDoc, collection, collectionData, serverTimestamp, orderBy, query } from '@angular/fire/firestore';
+import { FieldValue, Firestore, addDoc, collection, collectionData, serverTimestamp, orderBy, query, FirestoreModule } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -11,20 +12,20 @@ interface Message {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'chat-app',
   standalone: true,
   imports: [NgFor, ReactiveFormsModule, NgClass, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  firestore = inject(Firestore);
+  // firestore = inject(Firestore);
   chat$!: Observable<Message[]>;
   
   @ViewChild("messageContainer") messageContainer!: ElementRef;
   chatForm!: FormGroup;
   
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private firestore: Firestore) {}
 
   ngOnInit() {
     // Proper Angular way is to move this part into service
