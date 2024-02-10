@@ -1,0 +1,27 @@
+<main class="m-auto p-6">
+  <div class="flex flex-col h-screen justify-end">
+    <ul>
+      <li *ngFor="let chatItem of chat;">
+        <div class="flex items-start gap-4 mb-5">
+          <div>
+            <div class="p-0 rounded-full bg-slate-500 w-9 h-9 text-center flex justify-center items-center text-cyan-50">{{chatItem.user[0].toUpperCase()}}</div>
+          </div>
+          <div class="flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+              <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <span class="text-sm font-semibold text-gray-900 dark:text-white">
+                  {{chatItem.user}}
+                </span>
+              </div>
+              <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+                {{chatItem.message}}
+              </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="flex pb-8">
+      <textarea class="rounded-l-lg border p-2 w-full" placeholder="text here to chat"></textarea>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> send </button>
+    </div>
+  </div>
+</main>
