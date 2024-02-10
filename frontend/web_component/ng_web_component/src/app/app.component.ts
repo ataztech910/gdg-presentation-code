@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     });
 
     this.chatForm = this.formBuilder.group({
+      user: new FormControl('default user'),
       message: new FormControl(null)
     });
   }
@@ -37,10 +38,12 @@ export class AppComponent implements OnInit {
   }
 
   sendMessage() {
+    const user = this.chatForm.get("user");
     const message = this.chatForm.get("message");
+    console.log(user?.value);
     console.log(message?.value);
     this.chat.push({
-      user: 'Lalala',
+      user: user?.value,
       message: message?.value
     });
     message?.setValue("");

@@ -20,12 +20,17 @@
       </li>
     </ul>
     <div>
-      <form class="flex" [formGroup]="chatForm" (ngSubmit)="sendMessage()">
-        <textarea 
-          formControlName="message"
-          class="rounded-l-lg border p-2 w-full" placeholder="text here to chat"></textarea>
-        <button 
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> send </button>
+      <form c [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+        <input 
+          class="rounded border p-2 w-full"
+          formControlName="user" type="text" />
+        <div class="flex">
+          <textarea
+            formControlName="message"
+            class="rounded-l-lg border p-2 w-full" placeholder="text here to chat"></textarea>
+          <button 
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> send </button>
+        </div>
       </form>
     </div>
   </div>
