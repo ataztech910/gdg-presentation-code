@@ -1,4 +1,4 @@
-import { CommonModule, NgClass, NgFor } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { FieldValue, Firestore, addDoc, collection, collectionData, serverTimestamp, orderBy, query } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -13,12 +13,11 @@ interface Message {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, ReactiveFormsModule, NgClass, CommonModule],
+  imports: [NgFor, ReactiveFormsModule, NgClass, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  title = 'ng_web_component';
   firestore = inject(Firestore);
   chat$!: Observable<Message[]>;
   
