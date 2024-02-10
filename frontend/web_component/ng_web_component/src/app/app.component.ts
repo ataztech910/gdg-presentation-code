@@ -1,12 +1,13 @@
-import { NgFor } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { Firestore, collection, collectionData, doc, getDocs } from '@angular/fire/firestore';
+import { NgClass, NgFor } from '@angular/common';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, ReactiveFormsModule, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -15,11 +16,34 @@ export class AppComponent implements OnInit {
   firestore = inject(Firestore);
   chat: any[] = [];
   
+  @ViewChild("messageContainer") messageContainer!: ElementRef;
+  chatForm!: FormGroup;
+  
+  constructor(private formBuilder: FormBuilder) {}
+
   ngOnInit() {
     this.getDocData("Chat").subscribe((updates) => {
       console.log(updates);
       this.chat = updates.reverse();
-    })
+    });
+
+    this.chatForm = this.formBuilder.group({
+      message: new FormControl(null)
+    });
+  }
+
+  ngAfterViewChecked() {
+    this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+  }
+
+  sendMessage() {
+    const message = this.chatForm.get("message");
+    console.log(message?.value);
+    this.chat.push({
+      user: 'Lalala',
+      message: message?.value
+    });
+    message?.setValue("");
   }
 
   // Proper Angular way is to move this part into service

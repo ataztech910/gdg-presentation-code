@@ -1,8 +1,8 @@
-<main class="m-auto p-6">
-  <div class="flex flex-col h-screen justify-end">
-    <ul>
-      <li *ngFor="let chatItem of chat;">
-        <div class="flex items-start gap-4 mb-5">
+<main>
+  <div class="flex flex-col h-svh justify-end p-6">
+    <ul class="overflow-scroll" #messageContainer>
+      <li *ngFor="let chatItem of chat; let i = index">
+        <div class="flex items-start gap-4 mb-5" [ngClass]="{'flex-row-reverse': i % 2 === 0}">
           <div>
             <div class="p-0 rounded-full bg-slate-500 w-9 h-9 text-center flex justify-center items-center text-cyan-50">{{chatItem.user[0].toUpperCase()}}</div>
           </div>
@@ -19,9 +19,14 @@
         </div>
       </li>
     </ul>
-    <div class="flex pb-8">
-      <textarea class="rounded-l-lg border p-2 w-full" placeholder="text here to chat"></textarea>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> send </button>
+    <div>
+      <form class="flex" [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+        <textarea 
+          formControlName="message"
+          class="rounded-l-lg border p-2 w-full" placeholder="text here to chat"></textarea>
+        <button 
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg"> send </button>
+      </form>
     </div>
   </div>
 </main>
