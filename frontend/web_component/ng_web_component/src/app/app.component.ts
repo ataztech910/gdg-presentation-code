@@ -1,20 +1,26 @@
-import { NgClass, NgFor } from '@angular/common';
+import { CommonModule, NgClass, NgFor } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { FieldValue, Firestore, addDoc, collection, collectionData, serverTimestamp, orderBy, query } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
+
+interface Message {
+  user: string,
+  message: string,
+  createdAt: FieldValue
+}
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, ReactiveFormsModule, NgClass],
+  imports: [NgFor, ReactiveFormsModule, NgClass, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
   title = 'ng_web_component';
   firestore = inject(Firestore);
-  chat: any[] = [];
+  chat$!: Observable<Message[]>;
   
   @ViewChild("messageContainer") messageContainer!: ElementRef;
   chatForm!: FormGroup;
@@ -22,10 +28,11 @@ export class AppComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.getDocData("Chat").subscribe((updates) => {
-      console.log(updates);
-      this.chat = updates.reverse();
-    });
+    // Proper Angular way is to move this part into service
+    // But for the presentation I keep it here
+    const chatCollection = collection(this.firestore, "Chat");
+    const queryRef = query(chatCollection, orderBy("createdAt"));
+    this.chat$ = collectionData(queryRef) as Observable<Message[]>;
 
     this.chatForm = this.formBuilder.group({
       user: new FormControl('default user'),
@@ -42,16 +49,17 @@ export class AppComponent implements OnInit {
     const message = this.chatForm.get("message");
     console.log(user?.value);
     console.log(message?.value);
-    this.chat.push({
-      user: user?.value,
-      message: message?.value
+    this.addDocData("Chat",{
+        user: user?.value,
+        message: message?.value,
+        createdAt: serverTimestamp()
     });
     message?.setValue("");
   }
 
   // Proper Angular way is to move this part into service
   // But for the presentation I keep it here
-  getDocData(path: string) {
-    return  collectionData(collection(this.firestore, path), { idField:  'id' }) as  Observable<any>;
+  addDocData(path: string, value: Message) {
+    addDoc(collection(this.firestore, path), value);
   }
 }
