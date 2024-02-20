@@ -10,13 +10,42 @@
   <noscript><link rel="stylesheet" href="./chat-app/styles.css"></noscript>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-950">
 
-  <div class="flex justify-between p-4">
-    <div>
-      <p>Static text</p>
+  <div class="flex justify-around p-4">
+    <div class="basis-1/2">
+      <h1 class="text-[60px] text-white">Server side content</h1>
+      <div class="flex gap-2">
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-300">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2 text-gray-900">The Coldest Sunset</div>
+            <p class="text-gray-700 text-base">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+            </p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+          </div>
+        </div>
+
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-300">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2 text-gray-900">The Coldest Sunset</div>
+            <p class="text-gray-700 text-base">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+            </p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
+    <div class="bg-gray-300 basis-1/2 rounded overflow-hidden shadow-lg">
       <chat-app></chat-app>
     </div>
   </div> 
