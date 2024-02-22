@@ -12,8 +12,13 @@
 </head>
 <body class="bg-gray-950">
 
-  <div class="flex justify-around p-4">
-    <div class="basis-1/2">
+  <div class="lg:flex block justify-around p-4">
+    
+    <div class="bg-gray-300 rounded overflow-hidden shadow-lg">
+      <chat-app></chat-app>
+    </div>
+
+    <div>
       <h1 class="text-[60px] text-white">Server side content</h1>
       <div class="flex gap-2">
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-300">
@@ -44,9 +49,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="bg-gray-300 basis-1/2 rounded overflow-hidden shadow-lg">
-      <chat-app></chat-app>
     </div>
   </div> 
 
