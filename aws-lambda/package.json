@@ -1,0 +1,11 @@
+{
+    "name": "firebase-lambda",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+        "firebase": "^10.8.0"
+    },
+    "scripts": {
+        "dev": "node testHandler.mjs"
+    }
+}

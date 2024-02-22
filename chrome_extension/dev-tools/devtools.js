@@ -1,0 +1,1 @@
+chrome.devtools.panels.create('GDG Panel Demo', null, '/panel.html', null);

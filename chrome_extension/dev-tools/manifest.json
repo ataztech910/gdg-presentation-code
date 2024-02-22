@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "GDG Presenrtation Demo",
+    "description": "GDG Presenrtation Demo",
+    "version": "1.0",
+    "devtools_page": "devtools.html",
+    "action": {
+      "default_popup": "hello.html"
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://*.docs.google.com/*"],
+          "js": [
+              "content-script.js",
+              "firebase-app.js",
+              "firebase-firestore.js"
+          ]
+        }
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+    },
+    "permissions": ["https://bgusiaaz4aueob6ybmpaz5zxm40zmykg.lambda-url.eu-central-1.on.aws"]
+  }
