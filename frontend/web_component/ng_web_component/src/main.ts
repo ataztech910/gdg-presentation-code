@@ -15,7 +15,7 @@ import { appConfig } from './app/app.config';
 (async () => {
   const app: ApplicationRef = await createApplication(appConfig);
 
-  // Define Web Components
+// Define Web Components
 const chatComponent = createCustomElement(AppComponent, { injector: app.injector });
   customElements.define('chat-app', chatComponent);
 })();

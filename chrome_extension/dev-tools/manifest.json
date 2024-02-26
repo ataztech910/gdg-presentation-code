@@ -11,9 +11,7 @@
         {
           "matches": ["https://*.docs.google.com/*"],
           "js": [
-              "content-script.js",
-              "firebase-app.js",
-              "firebase-firestore.js"
+              "content-script.js"
           ]
         }
     ],
