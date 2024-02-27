@@ -7,18 +7,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="./chat-app/styles.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="./chat-app/styles.css"></noscript>
+  <link rel="stylesheet" href="./message-counter/styles.css" media="print" onload="this.media='all'">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-950">
+  <div class="bg-gray-300 rounded overflow-hidden shadow-lg">
+    <message-counter></message-counter>
+  </div>
 
   <div class="lg:flex block justify-around p-4">
-    
+  
+
     <div class="bg-gray-300 rounded overflow-hidden shadow-lg">
       <chat-app></chat-app>
     </div>
 
-    <div>
+    <div class="lg:block hidden">
       <h1 class="text-[60px] text-white">Server side content</h1>
       <div class="flex gap-2">
         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-300">
@@ -52,8 +56,13 @@
     </div>
   </div> 
 
-<script src="./chat-app/polyfills.js" type="module"></script>
+
+<script src="./chat-app/polyfills.js" type="module" defer></script>
+<!-- <script src="./message-counter/polyfills.js" type="module"></script> -->
+
+
 <script src="./chat-app/main.js" type="module"></script>
+<script src="./message-counter/main.js" type="module"></script>
 
 </body>
 </html>

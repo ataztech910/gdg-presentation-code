@@ -1,7 +1,7 @@
 import { AsyncPipe, CommonModule, NgClass, NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { FieldValue, Firestore, addDoc, collection, collectionData, serverTimestamp, orderBy, query, FirestoreModule } from '@angular/fire/firestore';
+import { FieldValue, Firestore, addDoc, collection, collectionData, serverTimestamp, orderBy, query } from '@angular/fire/firestore';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -19,7 +19,6 @@ interface Message {
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  // firestore = inject(Firestore);
   chat$!: Observable<Message[]>;
   
   @ViewChild("messageContainer") messageContainer!: ElementRef;
